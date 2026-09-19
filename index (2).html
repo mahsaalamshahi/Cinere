@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پیشنهاد همکاری استراتژیک | سینره × یکتانت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cinere-gold:#1f5c96;
+    --cinere-gold-light:#6fa3d1;
+    --cinere-green:#65bc7b;
+    --cinere-navy:#0d244c;
+    --cinere-charcoal:#212934;
+    --cinere-cream:#f4f0f0;
+    --yekta-yellow:#b7d1ea;
+    --navy-line:#1c3f78;
+    --ink:#232323;
+    --muted:#6b7280;
+    --line:#e6e2df;
+    --white:#ffffff;
+    --radius:14px;
+    --nav-h:64px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Vazirmatn', Tahoma, Arial, sans-serif;
+    background:var(--cinere-cream);
+    color:var(--ink);
+    line-height:1.9;
+    font-size:15.5px;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit;}
+
+  /* ---------- Top bar ---------- */
+  #topbar{
+    position:fixed; top:0; right:0; left:0; z-index:200;
+    background:linear-gradient(90deg, var(--cinere-navy) 0%, #0a1c3c 100%);
+    box-shadow:0 2px 14px rgba(0,0,0,.18);
+    border-bottom:3px solid var(--navy-line);
+  }
+  #brandRow{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:9px 22px; gap:14px;
+  }
+  .brand-lockup{
+    display:flex; align-items:center; gap:9px;
+    background:#fff; border-radius:10px; padding:6px 10px;
+  }
+  .brand-lockup img{height:20px; width:auto; object-fit:contain;}
+  .brand-x{color:var(--cinere-navy); font-weight:700; font-size:11px; opacity:.55;}
+  .brand-title{color:#fff; font-size:13px; font-weight:600;}
+  .brand-title span{display:block; color:var(--yekta-yellow); font-size:10.5px; font-weight:500; margin-top:1px;}
+  #credBtn{
+    display:flex; align-items:center; gap:7px;
+    background:rgba(183,209,234,.14); border:1px solid rgba(183,209,234,.45);
+    color:var(--yekta-yellow); font-size:12px; font-weight:600;
+    padding:8px 14px; border-radius:999px; white-space:nowrap; cursor:pointer;
+  }
+  #credBtn:hover{background:rgba(183,209,234,.25);}
+
+  nav#toc{
+    display:flex; overflow-x:auto; gap:4px; padding:0 16px 10px;
+    scrollbar-width:thin;
+  }
+  nav#toc::-webkit-scrollbar{height:5px;}
+  nav#toc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18); border-radius:6px;}
+  nav#toc button{
+    flex:0 0 auto;
+    display:flex; align-items:center; gap:8px;
+    padding:8px 14px; border-radius:9px; border:none; cursor:pointer;
+    font-size:12.6px; color:rgba(255,255,255,.72); background:transparent;
+    transition:all .15s ease; white-space:nowrap;
+  }
+  nav#toc button .num{
+    flex:0 0 18px; height:18px; border-radius:50%;
+    background:rgba(255,255,255,.1); color:rgba(255,255,255,.6);
+    font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:700;
+  }
+  nav#toc button:hover{background:rgba(255,255,255,.08); color:#fff;}
+  nav#toc button.active{background:rgba(183,209,234,.15); color:#fff;}
+  nav#toc button.active .num{background:var(--yekta-yellow); color:var(--cinere-navy);}
+
+  /* ---------- Main ---------- */
+  #main{max-width:980px; margin:0 auto; padding:calc(var(--nav-h) + 92px) 30px 70px;}
+  @media (min-width:1000px){ #main{padding-left:46px; padding-right:46px;} }
+
+  .page{display:none; animation:fadeIn .25s ease;}
+  .page.active{display:block;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .kicker{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
+  .kicker .idx{
+    width:34px; height:34px; border-radius:10px;
+    background:var(--cinere-navy); color:var(--yekta-yellow);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:14px; flex:0 0 34px;
+  }
+  h2.sec-title{font-size:21px; font-weight:800; color:var(--cinere-navy); margin:0;}
+  .sec-lead{color:var(--muted); font-size:14.5px; margin:2px 0 22px 44px; max-width:760px;}
+  p{margin:0 0 14px;}
+  h3.sub{font-size:16px; font-weight:700; color:var(--cinere-charcoal); margin:22px 0 10px;}
+  ul.clean, ol.clean{margin:0 0 14px; padding-inline-start:20px;}
+  ul.clean li, ol.clean li{margin-bottom:7px;}
+
+  .callout{
+    background:#fff; border:1px solid var(--line); border-inline-start:4px solid var(--cinere-gold);
+    border-radius:10px; padding:16px 18px; margin:16px 0; font-size:14.3px; color:var(--cinere-charcoal);
+  }
+  .callout.green{border-inline-start-color:var(--cinere-green);}
+  .callout.navy{border-inline-start-color:var(--cinere-navy); background:#f6f8fb;}
+
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:760px){.grid-2, .grid-3{grid-template-columns:1fr;}}
+
+  .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px;}
+  .card h4{margin:0 0 8px; font-size:14.5px; color:var(--cinere-navy); font-weight:700;}
+  .card p{font-size:13.6px; color:var(--muted); margin:0;}
+
+  .stat-row{display:flex; flex-wrap:wrap; gap:14px; margin:18px 0 6px;}
+  .stat-tile{flex:1 1 150px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; text-align:center;}
+  .stat-tile .num{font-size:19px; font-weight:800; color:var(--cinere-navy);}
+  .stat-tile .lbl{font-size:11.8px; color:var(--muted); margin-top:4px;}
+
+  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:13.4px;}
+  thead th{background:var(--cinere-navy); color:#fff; text-align:right; padding:11px 12px; font-weight:600; font-size:12.6px;}
+  thead th:first-child{border-radius:8px 0 0 0;}
+  thead th:last-child{border-radius:0 8px 0 0;}
+  tbody td{padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top; background:#fff;}
+  tbody tr:last-child td{border-bottom:none;}
+  .prio{display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; font-weight:800; font-size:12px; color:#fff;}
+  .prio.A{background:var(--cinere-gold);}
+  .prio.B{background:var(--cinere-green);}
+  .prio.C{background:#9aa1ab;}
+
+  .funnel{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:18px 0;}
+  .funnel .step{background:var(--cinere-navy); color:#fff; font-size:12.5px; font-weight:600; padding:9px 15px; border-radius:8px; white-space:nowrap;}
+  .funnel .arrow{color:var(--cinere-gold); font-size:16px;}
+
+  .tl{position:relative; margin:22px 0 6px; padding-inline-start:26px; border-inline-start:2px solid var(--line);}
+  .tl-item{position:relative; padding-bottom:24px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{content:''; position:absolute; right:-33px; top:2px; width:14px; height:14px; border-radius:50%; background:var(--cinere-gold); border:3px solid #fff; box-shadow:0 0 0 2px var(--cinere-gold);}
+  .tl-item .when{font-size:12px; color:var(--cinere-gold); font-weight:700; margin-bottom:3px;}
+  .tl-item .what{font-size:14px; font-weight:700; color:var(--cinere-charcoal); margin-bottom:3px;}
+  .tl-item .desc{font-size:13px; color:var(--muted);}
+
+  .footer-note{margin-top:10px; padding:22px 0 10px; font-size:12px; color:var(--muted); text-align:center;}
+
+  /* -------- Package selector -------- */
+  .pkg-toggle{display:flex; gap:10px; margin:18px 0 22px;}
+  .pkg-btn{
+    flex:1; padding:16px 18px; border-radius:14px; border:2px solid var(--line); background:#fff;
+    cursor:pointer; text-align:right; transition:all .15s ease;
+  }
+  .pkg-btn .pkg-name{font-size:15px; font-weight:800; color:var(--cinere-charcoal);}
+  .pkg-btn .pkg-desc{font-size:12.5px; color:var(--muted); margin-top:4px;}
+  .pkg-btn.active{border-color:var(--cinere-gold); background:linear-gradient(160deg,#eef5fb,#fff);}
+  .pkg-btn.active .pkg-name{color:var(--cinere-gold);}
+
+  .media-picker{display:flex; flex-direction:column; gap:10px; margin:16px 0 22px;}
+  .media-row{
+    display:flex; align-items:flex-start; gap:14px; background:#fff; border:1px solid var(--line);
+    border-radius:12px; padding:14px 16px; flex-wrap:wrap;
+  }
+  .media-row.locked{opacity:.55;}
+  .media-row input[type=checkbox]{width:18px; height:18px; accent-color:var(--cinere-gold); flex:0 0 18px; cursor:pointer; margin-top:3px;}
+  .media-row .m-name{flex:1 1 240px; font-size:13.6px; font-weight:700; color:var(--cinere-charcoal);}
+  .media-row .m-slider-row{display:flex; align-items:center; gap:8px; margin-top:8px;}
+  .media-row .m-tag{font-size:10.8px; padding:3px 9px; border-radius:999px; font-weight:700; flex:0 0 auto; margin-top:2px;}
+  .m-tag.A{background:rgba(31,92,150,.14); color:#1c4a73;}
+  .m-tag.B{background:rgba(101,188,123,.16); color:#2f7a45;}
+  .m-tag.C{background:#eef0f2; color:#6b7280;}
+  .media-row .m-price{flex:0 0 170px; font-size:11.5px; color:var(--muted); text-align:left; line-height:1.6;}
+  .media-row .m-alloc{flex:0 0 auto; font-size:13px; font-weight:800; color:var(--cinere-navy); min-width:118px; text-align:left;}
+  .media-row .m-vol{flex:0 0 140px; font-size:11.3px; color:var(--muted); text-align:left;}
+  @media (max-width:820px){
+    .media-row .m-price, .media-row .m-alloc, .media-row .m-vol{flex:1 1 100%; text-align:right;}
+  }
+
+  .budget-box{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; margin:6px 0 20px;}
+  .budget-box label{font-size:13px; font-weight:700; color:var(--cinere-charcoal); display:block; margin-bottom:8px;}
+  .budget-box input[type=number]{
+    width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:9px; font-size:15px;
+    font-family:inherit; text-align:left; direction:ltr; margin-bottom:16px;
+  }
+  .slider-row{display:flex; align-items:center; gap:14px;}
+  .slider-row input[type=range]{flex:1; accent-color:var(--cinere-gold); height:6px;}
+  .slider-readout{
+    min-width:110px; text-align:center; background:var(--cinere-navy); color:#fff;
+    border-radius:9px; padding:8px 10px; font-weight:800; font-size:14px;
+  }
+  .slider-scale{display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:6px;}
+  .total-readout{
+    display:flex; justify-content:space-between; align-items:center; margin-top:18px;
+    background:var(--cinere-cream); border-radius:10px; padding:14px 18px;
+  }
+  .total-readout .lbl{font-size:12.5px; color:var(--muted);}
+  .total-readout .val{font-size:19px; font-weight:800; color:var(--cinere-navy);}
+
+  .export-btn{
+    display:block; width:100%; margin:16px 0 0; padding:14px 18px; border:none; border-radius:12px;
+    background:var(--cinere-navy); color:#fff; font-family:inherit; font-size:14.5px; font-weight:700;
+    cursor:pointer; transition:background .15s ease;
+  }
+  .export-btn:hover{background:#123166;}
+
+  .disclaimer-box{
+    font-size:11.8px; color:var(--muted); background:#f6f8fb; border-radius:10px; padding:12px 16px; margin-top:14px;
+    border:1px dashed var(--line);
+  }
+
+  @media print{ #topbar{display:none;} #main{margin:0; max-width:100%; padding-top:20px;} .page{display:block !important; page-break-after:always;} }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div id="brandRow">
+    <div class="brand-lockup">
+      <img src="https://cinere.ir/wp-content/uploads/2024/04/Cinere-Logo-EN-3.png" alt="سینره">
+      <span class="brand-x">×</span>
+      <img src="https://www.yektanet.com/wp-content/uploads/2021/08/logo.png" alt="یکتانت">
+    </div>
+    <div class="brand-title">پیشنهاد همکاری استراتژیک — فاز اول<span>رشد فروش آنلاین و اتصال به مارکت‌پلیس</span></div>
+    <a id="credBtn" href="./Credential-Yektanet-170204.pdf" download>
+      ⬇ دانلود کردنشیال یکتانت (PDF)
+    </a>
+  </div>
+  <nav id="toc"></nav>
+</div>
+
+<main id="main"></main>
+
+<script>
+/* ============================================================
+   DATA — pricing & capability facts kept in one place so the
+   proposal text and the interactive calculator never diverge.
+   All figures below come from the Yektanet rate card provided
+   for this engagement. Nothing here is invented.
+   ============================================================ */
+const MEDIA = [
+  { id:'search',   name:'گوگل سرچ ادز (فرست‌ادز)',              tier:'A', unit:'CPC', min:null, max:null, note:'نیازمند استعلام (مزایده گوگل)', baseBudget:300000000, volType:'click', stage:'performance' },
+  { id:'native',   name:'تبلیغات پویا / همسان (موضوعی-رفتاری)', tier:'A', unit:'CPC', min:1500, max:12000, note:'۱,۵۰۰ تا ۱۲,۰۰۰ تومان', baseBudget:500000000, volType:'click', stage:'performance' },
+  { id:'retarget', name:'ریتارگتینگ (سبد رها‌شده + مشابه/مکمل)', tier:'A', unit:'CPC', min:4000, max:15000, note:'۴,۰۰۰ تا ۱۵,۰۰۰ تومان', baseBudget:200000000, volType:'click', stage:'performance' },
+  { id:'product',  name:'تبلیغات محصول (ریتارگتینگ محصول)',     tier:'A', unit:'CPC', min:2000, max:10000, note:'۲,۰۰۰ تا ۱۰,۰۰۰ تومان', baseBudget:300000000, volType:'click', stage:'performance' },
+  { id:'display',  name:'Google Display (مکمل همسان/بنری)',    tier:'B', unit:'CPC', min:null, max:null, note:'نیازمند استعلام', baseBudget:200000000, volType:'click', stage:'performance' },
+  { id:'push',     name:'Push Notification',                    tier:'B', unit:'CPC', min:1600, max:1600, note:'~۱,۶۰۰ تومان', baseBudget:200000000, volType:'click', condition:'ارسال به کاربران Push در شبکه ناشران یکتانت (مستقل از دیتابیس سینره)', stage:'performance' },
+  { id:'sms',      name:'پیامک (Retention/Activation)',         tier:'B', unit:'نفر', min:210, max:210, note:'~۲۱۰ تومان/نفر', baseBudget:200000000, volType:'reach', condition:'مشروط به کالیبراسیون با CRM سینره', stage:'performance' },
+  { id:'socialext',name:'سوشال مدیا خارجی (اینستاگرام/یوتیوب)', tier:'C', unit:'—', min:null, max:null, note:'متغیر / نیازمند استعلام', baseBudget:1000000000, volType:'none', stage:'awareness' },
+  { id:'socialint',name:'سوشال مدیا داخلی (بله/روبیکا/سروش)',  tier:'C', unit:'—', min:null, max:null, note:'متغیر / نیازمند استعلام', baseBudget:800000000, volType:'none', stage:'awareness' },
+  { id:'billboard',name:'بیلبورد دیجیتال (Conversion بالا/گران)', tier:'C', unit:'CPV', min:140, max:140, note:'~۱۴۰ تومان/نمایش', baseBudget:400000000, volType:'view', stage:'awareness' },
+  { id:'video',    name:'تبلیغات ویدیویی (تکمیلی Awareness)',   tier:'C', unit:'CPV', min:50, max:70, note:'۵۰ تا ۷۰ تومان/نمایش', baseBudget:800000000, volType:'view', stage:'awareness' },
+];
+
+const PACKAGES = {
+  economic: { label:'اقتصادی (Economic)', desc:'هسته Performance — Search، Native، Retargeting، محصول + مکمل Display', defaultOn:['search','native','retarget','product','display'] },
+  premium:  { label:'پریمیوم (Premium)',  desc:'هسته Performance + Retention کامل + پوشش Awareness مکمل', defaultOn:['search','native','retarget','product','display','push','sms','socialext','socialint','billboard','video'] },
+};
+
+let currentPkg = 'economic';
+const checkedState = {};
+const pctState = {};
+MEDIA.forEach(m => { checkedState[m.id] = PACKAGES.economic.defaultOn.includes(m.id); pctState[m.id] = 100; });
+
+function fmtToman(n){
+  return Math.round(n).toLocaleString('fa-IR') + ' تومان';
+}
+function fmtNum(n){
+  return Math.round(n).toLocaleString('fa-IR');
+}
+
+function renderMediaPicker(){
+  const wrap = document.getElementById('mediaPicker');
+  wrap.innerHTML = '';
+  MEDIA.forEach(m => {
+    const row = document.createElement('div');
+    row.className = 'media-row';
+    row.innerHTML = `
+      <input type="checkbox" id="chk_${m.id}" ${checkedState[m.id] ? 'checked' : ''}>
+      <div class="m-name">${m.name}${m.condition ? `<div style="font-size:11px;color:var(--muted);font-weight:400;margin-top:2px;">${m.condition}</div>` : ''}
+        <div class="m-slider-row">
+          <span style="font-size:10.5px;color:var(--muted);">۵۰٪-</span>
+          <input type="range" id="pct_${m.id}" min="50" max="150" value="${pctState[m.id]}" style="accent-color:var(--cinere-gold); width:120px;">
+          <span style="font-size:10.5px;color:var(--muted);">۵۰٪+</span>
+          <span id="pctlbl_${m.id}" style="font-size:11px;font-weight:700;color:var(--cinere-navy);min-width:34px;display:inline-block;">۱۰۰٪</span>
+        </div>
+      </div>
+      <span class="m-tag ${m.tier}">${m.tier === 'A' ? 'اولویت A' : m.tier === 'B' ? 'اولویت B' : 'تکمیلی'}</span>
+      <div class="m-price">${m.unit !== '—' ? m.unit + ': ' + m.note : m.note}<br><span style="opacity:.75;">پایه اکشن‌پلن: ${fmtToman(m.baseBudget)}</span></div>
+      <div class="m-alloc" id="alloc_${m.id}">—</div>
+      <div class="m-vol" id="vol_${m.id}">—</div>
+    `;
+    wrap.appendChild(row);
+    row.querySelector('input[type=checkbox]').addEventListener('change', e => {
+      checkedState[m.id] = e.target.checked;
+      recompute();
+    });
+    row.querySelector('input[type=range]').addEventListener('input', e => {
+      pctState[m.id] = Number(e.target.value);
+      document.getElementById('pctlbl_' + m.id).textContent = pctState[m.id].toLocaleString('fa-IR') + '٪';
+      recompute();
+    });
+  });
+}
+
+function selectPackage(pkgKey){
+  currentPkg = pkgKey;
+  MEDIA.forEach(m => checkedState[m.id] = PACKAGES[pkgKey].defaultOn.includes(m.id));
+  document.querySelectorAll('.pkg-btn').forEach(b => b.classList.toggle('active', b.dataset.pkg === pkgKey));
+  renderMediaPicker();
+  recompute();
+}
+
+function recompute(){
+  let grandTotal = 0;
+
+  MEDIA.forEach(m => {
+    const allocEl = document.getElementById('alloc_' + m.id);
+    const volEl = document.getElementById('vol_' + m.id);
+    if (!checkedState[m.id]) {
+      allocEl.textContent = 'خارج از انتخاب';
+      allocEl.style.color = '#b5bac1';
+      volEl.textContent = '—';
+      return;
+    }
+    allocEl.style.color = 'var(--cinere-navy)';
+    const alloc = m.baseBudget * (pctState[m.id] / 100);
+    grandTotal += alloc;
+    allocEl.textContent = fmtToman(alloc);
+
+    if (m.volType === 'none' || m.min == null) {
+      volEl.textContent = 'ظرفیت: نیازمند استعلام';
+    } else if (m.volType === 'click') {
+      const lo = alloc / m.max, hi = alloc / m.min;
+      volEl.textContent = '~' + fmtNum(lo) + ' تا ' + fmtNum(hi) + ' کلیک';
+    } else if (m.volType === 'view') {
+      const lo = alloc / m.max, hi = alloc / m.min;
+      volEl.textContent = '~' + fmtNum(lo) + ' تا ' + fmtNum(hi) + ' نمایش';
+    } else if (m.volType === 'reach') {
+      const val = alloc / m.min;
+      volEl.textContent = '~' + fmtNum(val) + ' نفر';
+    }
+  });
+
+  document.getElementById('totalBudgetVal').textContent = fmtToman(grandTotal);
+}
+
+/* ============================================================
+   JPEG EXPORT — draws the current selection (medium, allocated
+   budget, total, Performance/Awareness split) onto a canvas and
+   downloads it as a .jpg. Pure canvas, no external libraries.
+   ============================================================ */
+async function exportTariffImage(){
+  if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch(e){} }
+
+  const checked = MEDIA.filter(m => checkedState[m.id]);
+  if (checked.length === 0){
+    alert('حداقل یک رسانه را از لیست بالا انتخاب کنید تا خروجی JPEG ساخته شود.');
+    return;
+  }
+
+  const width = 1000;
+  const rowH = 46;
+  const headerH = 100;      // navy title band
+  const tableHeadH = 78;    // column labels + divider before first row
+  const footerH = 230;      // total line + ratio title + bar + legend + disclaimer + margin
+  const height = headerH + tableHeadH + checked.length * rowH + footerH;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.fillStyle = '#0d244c';
+  ctx.fillRect(0, 0, width, headerH);
+  ctx.direction = 'rtl';
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '800 24px Vazirmatn, Tahoma, sans-serif';
+  ctx.fillText('جدول تعرفه و بودجه — سینره × یکتانت', width - 40, 42);
+  ctx.font = '500 14px Vazirmatn, Tahoma, sans-serif';
+  ctx.fillStyle = '#b7d1ea';
+  const pkgLabel = PACKAGES[currentPkg].label;
+  const dateStr = new Date().toLocaleDateString('fa-IR');
+  ctx.fillText('بسته انتخابی: ' + pkgLabel + '   |   تاریخ: ' + dateStr, width - 40, 72);
+
+  let y = headerH + 34;
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#212934';
+  ctx.font = '700 15px Vazirmatn, Tahoma, sans-serif';
+  ctx.fillText('رسانه', width - 40, y);
+  ctx.textAlign = 'left';
+  ctx.fillText('بودجه تخصیص‌یافته', 40, y);
+  y += 12;
+  ctx.strokeStyle = '#0d244c';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(40, y); ctx.lineTo(width - 40, y); ctx.stroke();
+  y += 32;
+
+  let perfTotal = 0, awareTotal = 0;
+  checked.forEach((m, i) => {
+    const alloc = m.baseBudget * (pctState[m.id] / 100);
+    if (m.stage === 'awareness') awareTotal += alloc; else perfTotal += alloc;
+
+    if (i % 2 === 1) {
+      ctx.fillStyle = '#f6f8fb';
+      ctx.fillRect(40, y - 28, width - 80, rowH - 6);
+    }
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#212934';
+    ctx.font = '500 15px Vazirmatn, Tahoma, sans-serif';
+    ctx.fillText(m.name, width - 52, y - 6);
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#1f5c96';
+    ctx.font = '700 15px Vazirmatn, Tahoma, sans-serif';
+    ctx.fillText(fmtToman(alloc), 52, y - 6);
+    y += rowH;
+  });
+
+  ctx.strokeStyle = '#e6e2df';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(40, y - 16); ctx.lineTo(width - 40, y - 16); ctx.stroke();
+  y += 14;
+
+  const grand = perfTotal + awareTotal;
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#0d244c';
+  ctx.font = '800 18px Vazirmatn, Tahoma, sans-serif';
+  ctx.fillText('جمع کل بودجه', width - 52, y);
+  ctx.textAlign = 'left';
+  ctx.fillText(fmtToman(grand), 52, y);
+
+  y += 44;
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#212934';
+  ctx.font = '700 15px Vazirmatn, Tahoma, sans-serif';
+  ctx.fillText('نسبت بودجه Performance به Awareness', width - 40, y);
+  y += 18;
+
+  const barX = 40, barW = width - 80, barH = 30;
+  const perfPct = grand > 0 ? perfTotal / grand : 0;
+  const awarePct = 1 - perfPct;
+  ctx.fillStyle = '#1f5c96';
+  ctx.fillRect(barX, y, barW * perfPct, barH);
+  ctx.fillStyle = '#b7d1ea';
+  ctx.fillRect(barX + barW * perfPct, y, barW * awarePct, barH);
+  ctx.strokeStyle = '#0d244c';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(barX, y, barW, barH);
+
+  y += barH + 34;
+  const perfPctStr = Math.round(perfPct * 100).toLocaleString('fa-IR') + '٪';
+  const awarePctStr = Math.round(awarePct * 100).toLocaleString('fa-IR') + '٪';
+
+  ctx.fillStyle = '#1f5c96';
+  ctx.fillRect(width - 60, y - 14, 16, 16);
+  ctx.textAlign = 'right';
+  ctx.font = '700 14px Vazirmatn, Tahoma, sans-serif';
+  ctx.fillStyle = '#212934';
+  ctx.fillText('Performance: ' + perfPctStr, width - 82, y);
+
+  ctx.fillStyle = '#b7d1ea';
+  ctx.fillRect(width - 250, y - 14, 16, 16);
+  ctx.fillText('Awareness: ' + awarePctStr, width - 272, y);
+
+  y += 34;
+  ctx.textAlign = 'center';
+  ctx.font = '400 11.5px Vazirmatn, Tahoma, sans-serif';
+  ctx.fillStyle = '#9aa1ab';
+  ctx.fillText('ارقام بر اساس اکشن‌پلن مشترک و تنظیم درصدی هر رسانه در این صفحه — صرفاً برای هم‌راستایی داخلی، نه سند نهایی قرارداد.', width / 2, y);
+
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+  const a = document.createElement('a');
+  a.href = dataUrl;
+  a.download = 'Cinere-Yektanet-Tariff-Budget.jpg';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+/* ============================================================
+   PAGE CONTENT
+   ============================================================ */
+const PAGES = [
+{ id:'exec', title:'خلاصه مدیریتی', html: `
+  <div class="kicker"><div class="idx">۱</div><h2 class="sec-title">خلاصه مدیریتی</h2></div>
+  <p class="sec-lead">فاز اول از همکاری دو‌فازی سینره و یکتانت.</p>
+  <p>این پیشنهاد، فاز اول از همکاری دو‌فازی سینره و یکتانت را پوشش می‌دهد: <strong>رشد فروش آنلاین محصولات ضدآفتاب سینره و اتصال مستقیم فعالیت‌های دیجیتال به فروش در وب‌سایت سینره و مارکت‌پلیس‌های فعال</strong>. فاز دوم (توسعه فروشگاه‌های اختصاصی) به‌صورت جداگانه و در بازه‌ای حداقل ۶‌ماهه برنامه‌ریزی می‌شود و در محدوده این سند نیست — دقیقاً همان‌طور که در مذاکرات انجام‌پذیرفته توافق شد.</p>
+  <p>بر همین اساس، ترکیب رسانه‌ای پیشنهادی حول محورهایی طراحی شده که مستقیماً به کلیک، بازدید صفحه محصول و خرید منتهی می‌شوند و از فرمت‌های صرفاً آگاهی‌محور به‌عنوان محور اصلی فاز اول پرهیز شده است؛ این فرمت‌ها فقط در بسته Premium و به‌صورت مکمل قابل افزودن هستند.</p>
+  <div class="stat-row">
+    <div class="stat-tile"><div class="num">Search → Product</div><div class="lbl">→ Retargeting → Conversion</div></div>
+    <div class="stat-tile"><div class="num">۲ بسته</div><div class="lbl">اقتصادی / پریمیوم، قابل تنظیم بودجه</div></div>
+    <div class="stat-tile"><div class="num">۱ زیرساخت</div><div class="lbl">به‌جای مذاکره جدا با هر مارکت‌پلیس</div></div>
+  </div>
+  <div class="callout navy">
+    این نسخه از پیشنهاد، مستقیماً بر اساس فیدبک شما بازنویسی شده است: تفکیک شفاف فاز اول/دوم، حذف تمرکز صرف بر Awareness، و پاسخ به تجربه قبلی شما در مذاکره با یک داروخانه آنلاین — در بخش «۳. پاسخ به دغدغه‌های شما».
+  </div>
+`},
+{ id:'business', title:'شناخت کسب‌وکار', html: `
+  <div class="kicker"><div class="idx">۲</div><h2 class="sec-title">شناخت کسب‌وکار</h2></div>
+  <p class="sec-lead">برداشت از وب‌سایت رسمی سینره (cinere.ir) و بریف ارسالی.</p>
+  <div class="grid-2">
+    <div class="card">
+      <h4>مدل کسب‌وکار</h4>
+      <p>تولیدکننده محصولات آرایشی-بهداشتی با محوریت مراقبت پوست؛ فروش از طریق وب‌سایت اختصاصی و کانال‌های مارکت‌پلیس. خط ضدآفتاب شامل چند SKU متمایز بر اساس نوع پوست (چرب، خشک، حساس، مختلط، آقایان) است.</p>
+    </div>
+    <div class="card">
+      <h4>مخاطب هدف</h4>
+      <p>مصرف‌کنندگان آگاه به مراقبت پوست، با تمرکز ویژه بر خریداران محصولات Beauty/Skincare. به دلیل تنوع فرمولاسیون (فیزیکال، فلوئید، مینرال، مخصوص آقایان)، مخاطب در چند زیرمجموعه سنی و نوع پوست قابل تفکیک است.</p>
+    </div>
+  </div>
+  <h3 class="sub">قیف تبدیل پیشنهادی</h3>
+  <div class="funnel">
+    <span class="step">Awareness</span><span class="arrow">←</span>
+    <span class="step">Product Discovery</span><span class="arrow">←</span>
+    <span class="step">Skin-type Match</span><span class="arrow">←</span>
+    <span class="step">Purchase (سایت/مارکت‌پلیس)</span><span class="arrow">←</span>
+    <span class="step">Repeat Purchase</span>
+  </div>
+  <div class="callout">
+    نقاط تمایز برند (به‌نقل از cinere.ir): مواد اولیه اروپایی، فرمولاسیون حاصل همکاری آزمایشگاه‌های سوئیس، فرانسه و ایران، فاکتور PA+++ در تمام محصولات، بدون پارابن و بدون تست حیوانی. این پیام‌ها می‌توانند مبنای Creative Angle در کریتیو تبلیغات Performance قرار گیرند.
+  </div>
+`},
+{ id:'feedback', title:'پاسخ به دغدغه‌های شما', html: `
+  <div class="kicker"><div class="idx">۳</div><h2 class="sec-title">پاسخ به دغدغه‌های مطرح‌شده در جلسه</h2></div>
+  <p class="sec-lead">هر نکته‌ای که در پیام‌های شما مطرح شد، در این بخش مستقیماً پاسخ داده شده — بدون کلی‌گویی.</p>
+
+  <h3 class="sub">۱. «هدف من فقط Awareness نیست»</h3>
+  <p>پذیرفته شده. کل ساختار این پیشنهاد حول مدل <strong>Search → Product Ads → Retargeting → Conversion</strong> طراحی شده (بخش ۴). فرمت‌های Awareness‌محور (بیلبورد دیجیتال، ویدیوی پیش‌نمایشی) در بسته اقتصادی اصلاً حضور ندارند و در بسته پریمیوم فقط به‌عنوان لایه تکمیلی و اختیاری قابل افزودن‌اند (بخش ۶).</p>
+
+  <h3 class="sub">۲. «فاز دوم (فروشگاه اختصاصی) را جدا نگه دار»</h3>
+  <p>این سند فقط فاز اول را پوشش می‌دهد. فاز دوم — با افق حداقل ۶‌ماهه — در محدوده این پیشنهاد نیست و نیازمند بریف و جلسه جداگانه است.</p>
+
+  <h3 class="sub">۳. تجربه قبلی شما با یک داروخانه آنلاین (کمپین اکتوبر)</h3>
+  <p>رقمی که برای آن کمپین دریافت کردید و باعث انصراف شما شد، دقیقاً همان مسئله‌ای است که مدل تجمیع بودجه در یک زیرساخت واحد حل می‌کند. دو نکته مهم:</p>
+  <ul class="clean">
+    <li><strong>یکتانت به‌عنوان یک «داروخانه آنلاین» وارد پنل نمی‌شود</strong> — این ادعا را نمی‌کنیم و در Credential ما هم چنین موضوعی ثبت نشده؛ صادقانه می‌گوییم این کانال مشخص جزو شبکه ما نیست.</li>
+    <li>اما شبکه <strong>همسان/تبلیغات پویا</strong> یکتانت (بیش از ۲,۳۰۰ وب‌سایت) به‌صورت موضوعی و کلیدواژه‌ای در حوزه‌های سلامت، زیبایی و مراقبت پوست هدف‌گیری می‌شود — یعنی می‌توانید به مخاطب مشابه با تعرفه شفاف و منتشرشده (۱,۵۰۰ تا ۱۲,۰۰۰ تومان به ازای کلیک) دسترسی پیدا کنید، بدون نیاز به مذاکره جداگانه و غیرشفاف با هر پلتفرم.</li>
+    <li>برای همکاری با اینفلوئنسرهای حوزه Beauty، زیرمجموعه یکتانت («جریان») به بیش از ۲,۰۰۰ اینفلوئنسر و ۳,۰۰۰ پیج اینستاگرامی دسترسی دارد؛ مدل قیمت‌گذاری «تعرفه‌ای» (پرداخت به ازای Impression) است، اما نرخ دقیق برای هر پیج/اینفلوئنسر متغیر است و باید استعلام شود — رقمی از پیش اختراع نمی‌کنیم.</li>
+  </ul>
+
+  <h3 class="sub">۴. «تعرفه‌ها را در دو بسته اقتصادی/پریمیوم بده تا بتوانم برای بیزینس‌یونیت‌ها تأیید بگیرم»</h3>
+  <p>بخش ۶ (تعرفه و بسته‌های پیشنهادی) دقیقاً همین ساختار را دارد: یک انتخاب‌گر بسته، چک‌لیست انتخاب رسانه، و برای هر رسانه به‌صورت مجزا یک اسلایدر که رقم پایه همان رسانه در اکشن‌پلن را تا ۵۰٪ کم یا زیاد می‌کند و برآورد حجم را زنده به‌روزرسانی می‌کند — قابل ذخیره یا پرینت برای ارائه داخلی.</p>
+
+  <div class="callout navy">
+    مواردی که هنوز نیازمند داده دقیق‌تر از شماست (نه اختراع عدد از سمت ما): CAC/CPA فعلی شما، نرخ تبدیل سایت، وضعیت اسکریپت/تگ‌های قیف فروش، و تأیید نهایی رقم هر رسانه در بسته منتخب — این موارد در جلسه فنی-بازرگانی بعدی جمع‌بندی می‌شود.
+  </div>
+`},
+{ id:'strategy', title:'استراتژی و Full-Funnel', html: `
+  <div class="kicker"><div class="idx">۴</div><h2 class="sec-title">استراتژی و مدل Full-Funnel → Conversion</h2></div>
+  <p class="sec-lead">دقیقاً مدلی که خودتان در پیام‌ها مشخص کردید: Search → Product Ads → Retargeting → Conversion.</p>
+  <div class="funnel">
+    <span class="step">Google Search (Intent)</span><span class="arrow">←</span>
+    <span class="step">Native/همسان (Demand Gen)</span><span class="arrow">←</span>
+    <span class="step">Product Ads (Commerce)</span><span class="arrow">←</span>
+    <span class="step">Retargeting (Return)</span><span class="arrow">←</span>
+    <span class="step">Purchase</span>
+  </div>
+  <div class="grid-3">
+    <div class="card">
+      <h4>۱. جذب تقاضای موجود</h4>
+      <p>جستجوی گوگل برای عبارات با نیت خرید بالا («خرید ضدآفتاب»، «بهترین ضدآفتاب چرب») از طریق فرست‌ادز، زیرمجموعه رسمی یکتانت برای گوگل ادز.</p>
+    </div>
+    <div class="card">
+      <h4>۲. ساخت تقاضا و هدایت به خرید</h4>
+      <p>تبلیغات پویا/همسان با هدفمندسازی موضوعی/رفتاری در شبکه Beauty/Skincare-relevant یکتانت، به‌همراه کمپین محصول برای رساندن کاربر مستقیم به صفحه محصول.</p>
+    </div>
+    <div class="card">
+      <h4>۳. بازگرداندن و تبدیل</h4>
+      <p>ریتارگتینگ سبد خرید رها‌شده و محصولات مشابه/مکمل روی کاربرانی که سایت یا صفحه محصول را دیده‌اند اما خرید را کامل نکرده‌اند؛ تکمیل با پیامک/پوش برای Reactivation.</p>
+    </div>
+  </div>
+  <div class="callout green">
+    فرمت‌های صرفاً آگاهی‌محور (ویدیوی پیش‌نمایشی، سوشال مدیا خارجی/داخلی) در این مدل به‌عنوان لایه مکمل و اختیاری در بسته Premium در نظر گرفته شده‌اند، نه ستون اصلی استراتژی. بیلبورد دیجیتال استثناست: با کریتیو اختصاصی نرخ Conversion بالایی دارد (بخش ۵)، اما به دلیل هزینه بالای مدیوم همچنان در دسته سرمایه‌گذاری تکمیلی/Premium قرار می‌گیرد.
+  </div>
+`},
+{ id:'mix', title:'اولویت‌بندی رسانه', html: `
+  <div class="kicker"><div class="idx">۵</div><h2 class="sec-title">اولویت‌بندی رسانه (Media Mix)</h2></div>
+  <p class="sec-lead">همان ترتیب اولویتی که خودتان بر اساس ردیف‌های اکشن‌پلن مشخص کردید — با توضیح نقش هر رسانه.</p>
+  <table>
+    <thead><tr><th>اولویت</th><th>رسانه</th><th>نقش در قیف</th><th>چرا</th></tr></thead>
+    <tbody>
+      <tr><td><span class="prio A">A</span></td><td><strong>Google Search Ads</strong></td><td>Capture Intent خرید</td><td>بالاترین نرخ تبدیل به ازای هزینه؛ تقاضای از‌پیش‌موجود پاسخ‌داده‌نشده نباید رها شود</td></tr>
+      <tr><td><span class="prio A">A</span></td><td><strong>تبلیغات پویا/همسان</strong></td><td>Demand Generation + Click</td><td>هدفمندسازی موضوعی/رفتاری در شبکه سلامت و زیبایی، بدون نیاز به مذاکره با ناشران منفرد</td></tr>
+      <tr><td><span class="prio A">A</span></td><td><strong>ریتارگتینگ</strong></td><td>برگرداندن کاربر به خرید</td><td>کوتاه‌ترین فاصله تا Conversion؛ سبد رها‌شده + محصولات مشابه/مکمل</td></tr>
+      <tr><td><span class="prio A">A</span></td><td><strong>تبلیغات محصول</strong></td><td>ریتارگتینگ محصول (Commerce)</td><td>برخلاف ریتارگتینگ بنری (که یک بنر عمومی نمایش می‌دهد)، در این مدل خودِ محصول با کپی‌رایت‌های متنوع نمایش داده می‌شود؛ این تفاوت فضای بیشتری برای خلاقیت در کپی‌رایت باز می‌کند</td></tr>
+      <tr><td><span class="prio B">B</span></td><td><strong>Google Display</strong></td><td>مکمل تبلیغات همسان/بنری در Upper/Mid Funnel</td><td>پوشش تکمیلی بصری در اکوسیستم گوگل، هم‌راستا با نقش تبلیغات همسان/بنری در بالای قیف</td></tr>
+      <tr><td><span class="prio B">B</span></td><td><strong>Push Notification</strong></td><td>Conversion/Activation</td><td>ارسال به کاربرانی که Push را در دستگاه‌های متصل به وب‌سایت‌های طرف‌قرارداد یکتانت فعال کرده‌اند — نه صرفاً مخاطبین/دیتابیس اختصاصی سینره</td></tr>
+      <tr><td><span class="prio B">B</span></td><td><strong>پیامک</strong></td><td>Conversion/Activation</td><td>مشروط به کالیبراسیون با CRM سینره</td></tr>
+      <tr><td><span class="prio C">C</span></td><td>سوشال مدیا خارجی/داخلی</td><td>Awareness مکمل</td><td>پشتیبان بالای قیف؛ فقط در بسته Premium فعال</td></tr>
+      <tr><td><span class="prio C">C</span></td><td>بیلبورد دیجیتال</td><td>Conversion از طریق کریتیو + Awareness</td><td>با کریتیو اختصاصی/گیمیفای‌شده نرخ Conversion این مدیوم به‌طور محسوسی بالاست، اما CPV آن نیز از بالاترین‌های بازار است؛ سرمایه‌گذاری پرتأثیر ولی گران، مناسب بسته Premium</td></tr>
+      <tr><td><span class="prio C">C</span></td><td>ویدیو (Pre-roll/همسان/Floating)</td><td>Awareness مکمل</td><td>حضور گسترده با هزینه پایین‌تر از بیلبورد؛ کاندید Premium، نه ستون فاز اول</td></tr>
+    </tbody>
+  </table>
+`},
+{ id:'tariff', title:'تعرفه و بودجه', html: `
+  <div class="kicker"><div class="idx">۶</div><h2 class="sec-title">تعرفه، بسته‌ها و برآورد بودجه (تعاملی)</h2></div>
+  <p class="sec-lead">یک بسته را انتخاب کنید و رسانه‌های موردنظر را تیک بزنید. عدد پایه هر رسانه همان رقمی است که در اکشن‌پلن مشترک برای آن رسانه تعیین شد؛ اسلایدر کنار هر ردیف، همان رسانه را به‌طور مستقل تا ۵۰٪ کم یا زیاد می‌کند.</p>
+
+  <div class="pkg-toggle">
+    <div class="pkg-btn" data-pkg="economic" onclick="selectPackage('economic')">
+      <div class="pkg-name">اقتصادی (Economic)</div>
+      <div class="pkg-desc">هسته Performance: Search، Native، Retargeting، محصول + Display</div>
+    </div>
+    <div class="pkg-btn" data-pkg="premium" onclick="selectPackage('premium')">
+      <div class="pkg-name">پریمیوم (Premium)</div>
+      <div class="pkg-desc">هسته Performance کامل + Retention (پیامک/پوش) + پوشش Awareness مکمل</div>
+    </div>
+  </div>
+
+  <div id="mediaPicker" class="media-picker"></div>
+
+  <div class="total-readout">
+    <span class="lbl">جمع بودجه بر اساس رسانه‌های انتخاب‌شده و درصد تنظیم‌شده هر کدام</span>
+    <span class="val" id="totalBudgetVal">—</span>
+  </div>
+
+  <button class="export-btn" onclick="exportTariffImage()">⬇ دانلود خروجی JPEG از این انتخاب</button>
+
+  <div class="disclaimer-box">
+    اعداد ستون «برآورد حجم» صرفاً <strong>ظرفیت خرید رسانه</strong> بر اساس نرخ CPC/CPV منتشرشده یکتانت است، نه پیش‌بینی فروش یا نرخ تبدیل. برای رسانه‌هایی که «نیازمند استعلام» علامت خورده‌اند (Google Search، Google Display، سوشال مدیا)، مقدار بودجه قابل تنظیم است، اما برآورد حجم منوط به دریافت نرخ دقیق در جلسه فنی-بازرگانی است. عدد پایه هر رسانه از اکشن‌پلن مشترک گرفته شده و اسلایدر هر ردیف مستقل از بقیه رسانه‌هاست.
+  </div>
+`},
+{ id:'audience', title:'هدف‌گیری مخاطب', html: `
+  <div class="kicker"><div class="idx">۷</div><h2 class="sec-title">Audience Targeting، Retargeting و Segmentation برای Beauty/Skincare</h2></div>
+  <p class="sec-lead">قابلیت‌هایی که واقعاً در پلتفرم یکتانت موجود است — نه فهرست آرزویی.</p>
+  <div class="grid-2">
+    <div class="card">
+      <h4>هدفمندسازی تبلیغات (Native/Display)</h4>
+      <p>تبلیغات کلیکی موضوعی، کلیدواژه‌ای و رفتار‌محور — یعنی امکان محدودکردن نمایش به محتوای مرتبط با سلامت، زیبایی، مراقبت پوست و ضدآفتاب در شبکه ۲,۳۰۰+ سایتی همسان.</p>
+    </div>
+    <div class="card">
+      <h4>Retargeting</h4>
+      <p>سه سناریوی مشخص: محصولات مشابه/مکمل (بر اساس کالای مشاهده‌شده)، جدیدترین‌ها/تخفیف‌دارها در همان دسته، و سبد خرید رها‌شده — هر سه مستقیماً قابل استفاده برای خط ضدآفتاب سینره.</p>
+    </div>
+    <div class="card">
+      <h4>Segmentation در پیامک</h4>
+      <p>هدف‌گیری بر اساس استان/شهر/منطقه و Segment رفتاری (رفتار خرید، علاقه‌مندی، جنسیت، صنف، حوزه شغلی) — قابل استفاده برای Retention روی خریداران قبلی سینره.</p>
+    </div>
+    <div class="card">
+      <h4>سوشال (در صورت فعال‌سازی در بسته Premium)</h4>
+      <p>دسترسی به بیش از ۳,۰۰۰ پیج اینستاگرامی و ۲,۰۰۰ اینفلوئنسر برای هدف‌گیری موضوعی Beauty/Skincare، از طریق زیرمجموعه «جریان».</p>
+    </div>
+  </div>
+  <div class="callout">
+    محدودیت شفاف: یکتانت داده Demographic آماده به نام «زن ۱۵-۵۵ ساله علاقه‌مند به ضدآفتاب» را به‌صورت یک Segment از پیش‌ساخته در اختیار قرار نمی‌دهد؛ Targeting از طریق ترکیب موضوع محتوا + رفتار مرور + Retargeting رفتاری روی سایت شما ساخته می‌شود. این را صریح می‌گوییم تا انتظار درستی شکل بگیرد.
+  </div>
+`},
+{ id:'casestudy', title:'کیس‌استادی و مارکت‌پلیس', html: `
+  <div class="kicker"><div class="idx">۸</div><h2 class="sec-title">کیس‌استادی، بنچمارک صنعت و اتصال به مارکت‌پلیس</h2></div>
+  <p class="sec-lead">شفاف درباره چیزی که در این سند داریم و چیزی که نداریم.</p>
+  <p>درخواست شما برای کیس‌استادی بدون نام برند در حوزه ضدآفتاب/Skincare با اعداد واقعی (Budget، Media Mix، CTR، Conversion، CPA، ROAS) و نمونه اتصال کمپین به فروش در مارکت‌پلیس‌هایی مثل دیجی‌کالا کاملاً روشن و قابل قبول است.</p>
+  <div class="callout navy">
+    این اعداد در Credential عمومی یا این پیشنهاد اولیه موجود نیستند، چون هر کیس‌استادی واقعی مشروط به سیاست محرمانگی برند مشتری قبلی است و باید توسط تیم حساب یکتانت و با هماهنگی برند مربوطه تأیید و بی‌نام‌سازی شود. <strong>به‌جای حدس‌زدن رقم، این مورد را به‌صورت مشخص در جلسه فنی-بازرگانی بعدی از تیم حساب می‌خواهیم و مستقیماً برای شما ارسال می‌شود.</strong>
+  </div>
+  <p>همین اصل برای نمونه اتصال به مارکت‌پلیس‌هایی مانند دیجی‌کالا صادق است: امکان فنی اتصال UTM به صفحات محصول مارکت‌پلیس باید در جلسه فنی-بازرگانی بعدی بررسی شود، اما نمونه عملکرد واقعی نیازمند تأیید تیم حساب است.</p>
+`},
+{ id:'measure', title:'اندازه‌گیری و زمان‌بندی', html: `
+  <div class="kicker"><div class="idx">۹</div><h2 class="sec-title">اندازه‌گیری، بهینه‌سازی و جدول زمانی</h2></div>
+
+  <h3 class="sub">اندازه‌گیری و ردیابی</h3>
+  <ul class="clean">
+    <li>نصب اسکریپت یکتانت و تنظیم تگ‌های قیف فروش در صفحات وب‌سایت سینره</li>
+    <li>ساختار یکپارچه UTM برای هر کانال/کمپین/کریتیو جهت تفکیک دقیق منبع فروش</li>
+    <li>اتصال داده تبدیل به Google Analytics 4 برای گزارش‌دهی قیف کامل (Impression تا Purchase)</li>
+    <li>گزارش‌دهی دوره‌ای (هفتگی/دوهفته‌ای) با شفافیت کامل روی هزینه، تبدیل و CAC هر کانال</li>
+  </ul>
+
+  <h3 class="sub">برنامه بهینه‌سازی (چرخه دوهفته‌ای)</h3>
+  <ul class="clean">
+    <li><strong>CTR پایین:</strong> بازبینی کریتیو، کپی، مخاطب و جایگاه نمایش</li>
+    <li><strong>CTR خوب/Conversion پایین:</strong> بازبینی Landing، سرعت، اعتماد و مسیر پرداخت</li>
+    <li><strong>Conversion خوب/CPA بالا:</strong> بازتخصیص بودجه به کانال با بهترین بازده و تقویت Retargeting</li>
+    <li><strong>حلقه بازخورد مارکت‌پلیس:</strong> تطبیق داده فروش مارکت‌پلیس با ترافیک ارجاعی برای اصلاح تخصیص بین سایت اختصاصی و مارکت‌پلیس‌ها</li>
+  </ul>
+
+  <h3 class="sub">جدول زمانی پیشنهادی</h3>
+  <div class="tl">
+    <div class="tl-item"><div class="when">هفته ۱–۲</div><div class="what">راه‌اندازی و Tracking</div><div class="desc">نصب پیکسل/تگ تبدیل، تعریف ساختار UTM، هماهنگی کاتالوگ محصول</div></div>
+    <div class="tl-item"><div class="when">هفته ۳–۴</div><div class="what">لانچ آزمایشی (Pilot)</div><div class="desc">اجرای بسته اقتصادی روی محصول/محصولات منتخب، جمع‌آوری داده اولیه CPC/CVR</div></div>
+    <div class="tl-item"><div class="when">ماه ۲</div><div class="what">مقیاس‌گذاری</div><div class="desc">افزودن کمپین محصول کامل و همسان هدفمند مطابق داده عملکرد Pilot</div></div>
+    <div class="tl-item"><div class="when">ماه ۳</div><div class="what">بازبینی و تصمیم Premium</div><div class="desc">ارزیابی نتایج، تصمیم برای فعال‌سازی لایه‌های Premium و آماده‌سازی گذار به فاز دوم</div></div>
+  </div>
+  <div class="footer-note">سینره × یکتانت — پیشنهاد همکاری استراتژیک، فاز اول</div>
+`},
+];
+
+/* ============================================================
+   BOOTSTRAP
+   ============================================================ */
+function buildNav(){
+  const nav = document.getElementById('toc');
+  PAGES.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.dataset.id = p.id;
+    btn.innerHTML = `<span class="num">${(i+1).toLocaleString('fa-IR')}</span>${p.title}`;
+    btn.addEventListener('click', () => showPage(p.id));
+    nav.appendChild(btn);
+  });
+}
+function buildPages(){
+  const main = document.getElementById('main');
+  PAGES.forEach(p => {
+    const sec = document.createElement('section');
+    sec.className = 'page';
+    sec.id = 'page-' + p.id;
+    sec.innerHTML = p.html;
+    main.appendChild(sec);
+  });
+}
+function showPage(id){
+  document.querySelectorAll('.page').forEach(el => el.classList.toggle('active', el.id === 'page-' + id));
+  document.querySelectorAll('#toc button').forEach(b => b.classList.toggle('active', b.dataset.id === id));
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (id === 'tariff') { renderMediaPicker(); recompute(); }
+}
+
+buildNav();
+buildPages();
+showPage(PAGES[0].id);
+document.querySelector('.pkg-btn[data-pkg="economic"]').classList.add('active');
+</script>
+
+</body>
+</html>
